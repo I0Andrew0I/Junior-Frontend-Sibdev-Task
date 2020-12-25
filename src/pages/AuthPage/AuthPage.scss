@@ -1,0 +1,59 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fafafa;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  &__auth-form {
+    border: 1px solid rgba(39, 39, 39, 0.1);
+    background: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    width: 510px;
+    height: 520px;
+    flex-direction: column;
+    align-items: center;
+    &__logo {
+      margin-top: 40px;
+    }
+    &__label {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 600;
+      margin-top: 32px;
+      color: #000000;
+    }
+    &__input {
+      display: flex;
+      flex-direction: column;
+      font-size: 20px;
+      line-height: 24px;
+      &__label {
+        display: flex;
+        color: rgba(23, 23, 25, 0.3);
+        justify-content: flex-start;
+        font-size: 16px;
+        line-height: 22px;
+      }
+      &____textfield {
+        height: 100%;
+      }
+      margin-top: 20px;
+      width: 334px;
+      height: 70px;
+    }
+    &__button {
+      margin-top: 40px;
+      width: 176px;
+      height: 52px;
+      button {
+        height: 100%;
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+  }
+}
