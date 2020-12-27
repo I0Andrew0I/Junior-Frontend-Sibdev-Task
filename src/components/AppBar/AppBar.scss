@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+  justify-content: center;
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1040px;
+  }
+}
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}

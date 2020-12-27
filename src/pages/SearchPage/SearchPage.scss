@@ -1,0 +1,19 @@
+.search-page {
+  background-color: #fafafa;
+  width: 100%;
+  display: block;
+  min-height: calc(100vh - 64px) !important;
+  &__data {
+    margin: 0 auto;
+    width: 1040px;
+    @media (max-width: 1040px) {
+      width: 775px;
+    }
+    @media (max-width: 775px) {
+      width: 510px;
+    }
+    @media (max-width: 510px) {
+      width: 245px;
+    }
+  }
+}
