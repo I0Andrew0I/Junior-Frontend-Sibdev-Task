@@ -5,7 +5,7 @@ import { Header } from "antd/lib/layout/layout";
 import logo from "../../assets/sibdev-logo.png";
 import "./AppBar.scss";
 
-const AppBarLayout = ({ onExit, onRedirect }) => {
+const AppBarLayout = ({ onExit, onRedirect, rootPath }) => {
   return (
     <Header
       className="header"
@@ -15,12 +15,12 @@ const AppBarLayout = ({ onExit, onRedirect }) => {
         <Menu
           theme="light"
           mode="horizontal"
-          defaultSelectedKeys={["search"]}
+          selectedKeys={[rootPath]}
           onClick={({ key }) => onRedirect(key)}
         >
           <img height={48} width={48} src={logo} />
           <Menu.Item key="search">Поиск</Menu.Item>
-          <Menu.Item key="favorite">Избранное</Menu.Item>
+          <Menu.Item key="favorites">Избранное</Menu.Item>
         </Menu>
         <Menu theme="light" mode="horizontal">
           <Menu.Item onClick={onExit}>Выход</Menu.Item>
@@ -33,6 +33,7 @@ const AppBarLayout = ({ onExit, onRedirect }) => {
 AppBarLayout.propTypes = {
   onExit: PropTypes.func.isRequired,
   onRedirect: PropTypes.func.isRequired,
+  rootPath: PropTypes.string.isRequired,
 };
 
 export default AppBarLayout;

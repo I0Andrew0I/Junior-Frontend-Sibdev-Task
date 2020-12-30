@@ -1,20 +1,23 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { redirect } from "../../helpers/helpers";
 import AppBarLayout from "./AppBarLayout";
 
 const onExit = (history) => () => {
+  Storage.clear();
   history.push("/auth");
-  //TODO: Чистка локального хранилища
-};
-
-const onRedirect = (history) => (path) => {
-  history.push(`/${path}`);
 };
 
 const AppBar = () => {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const rootPath = pathname.split("/")[1];
   return (
-    <AppBarLayout onExit={onExit(history)} onRedirect={onRedirect(history)} />
+    <AppBarLayout
+      onExit={onExit(history)}
+      onRedirect={redirect(history)}
+      rootPath={rootPath}
+    />
   );
 };
 

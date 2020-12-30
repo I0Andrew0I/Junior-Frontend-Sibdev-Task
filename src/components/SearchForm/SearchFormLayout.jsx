@@ -4,10 +4,14 @@ import Search from "antd/lib/input/Search";
 import { HeartTwoTone, HeartOutlined } from "@ant-design/icons";
 import "./SearchForm.scss";
 
-const suffix = (position, isFavorited) => {
-  if (position === "top" && isFavorited) return <HeartTwoTone />;
-  if (position === "top" && !isFavorited)
-    return <HeartOutlined className={`search-form-${position}__field__icon`} />;
+const suffix = (position, onFavorite) => {
+  if (position === "top")
+    return (
+      <HeartTwoTone
+        className={`search-form-${position}__field__icon`}
+        onClick={onFavorite}
+      />
+    );
 };
 
 const SearchFormLayout = ({
@@ -15,8 +19,8 @@ const SearchFormLayout = ({
   searchQuery,
   setSearchQuery,
   onSearch,
+  onFavorite,
 }) => {
-  const isFavorited = true;
   return (
     <div className={`search-form search-form-${position}`}>
       <div className={`search-form-${position}__label`}>Поиск видео</div>
@@ -25,7 +29,7 @@ const SearchFormLayout = ({
           placeholder="Что хотите посмотреть?"
           enterButton="Найти"
           size="large"
-          suffix={suffix(position, isFavorited)}
+          suffix={suffix(position, onFavorite)}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onSearch={onSearch}

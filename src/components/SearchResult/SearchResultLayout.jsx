@@ -8,8 +8,6 @@ import "./SearchResult.scss";
 const SearchResultLayout = ({ resultItems }) => {
   const [filterType, setFilterType] = useState("block");
   const handleFilterTypeChange = (value) => {
-    console.log(value);
-    console.log(filterType);
     setFilterType(value);
   };
   return (

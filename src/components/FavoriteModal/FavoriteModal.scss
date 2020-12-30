@@ -1,0 +1,94 @@
+.favorite-modal {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  & .ant-modal-content {
+    background: #ffffff;
+    box-shadow: 0px 10px 50px rgba(19, 144, 229, 0.8);
+    border-radius: 10px;
+    width: 510px;
+  }
+  &__label {
+    width: 100%;
+    height: 28px;
+    margin-top: 12px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+  }
+  &__input {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    margin-top: 24px;
+    &__label {
+      height: 22px;
+      width: 100%;
+      color: #272727;
+      font-size: 16px;
+      line-height: 22px;
+      &__need::before {
+        content: "* ";
+        color: #ff0000;
+      }
+    }
+    &__select {
+      width: 100%;
+      height: 48px !important;
+      font-size: 20px !important;
+      line-height: 24px !important;
+    }
+    &__field {
+      color: #272727;
+      font-size: 20px !important;
+      line-height: 24px !important;
+      width: 100%;
+      height: 48px;
+      border-radius: 5px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__slider {
+        flex-grow: 1;
+      }
+      &__field {
+        margin-left: 20px !important;
+        color: #272727;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        width: 100px !important;
+        height: 48px !important;
+        border-radius: 5px !important;
+        & input {
+          height: 46px;
+          text-align: center;
+        }
+      }
+    }
+    & .ant-select-selector {
+      height: 48px !important;
+      align-items: center !important;
+      border-radius: 5px !important;
+    }
+  }
+  &__buttons {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    &__button {
+      font-size: 20px !important;
+      line-height: 24px !important;
+      height: 52px !important;
+      flex-grow: 1;
+      border-radius: 5px !important;
+      &:last-child {
+        margin-left: 10px;
+      }
+    }
+  }
+}
