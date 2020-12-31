@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import AuthPage from "../../pages/AuthPage/AuthPage";
 import IndexPage from "../../pages/IndexPage/IndexPage";
 
 const App = () => {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  useEffect(() => {
-    setIsAuthorized(localStorage.getItem("token"));
-  }, [localStorage]);
+  const token = localStorage.getItem("token");
   return (
     <div className="app">
       <Switch>
-        {!isAuthorized && (
+        {!token && (
           <>
             <Route path="/auth" component={AuthPage} />
             <Route path="*">
@@ -19,7 +16,7 @@ const App = () => {
             </Route>
           </>
         )}
-        {isAuthorized && <Route path="*" component={IndexPage} />}
+        {token && <Route path="*" component={IndexPage} />}
       </Switch>
     </div>
   );

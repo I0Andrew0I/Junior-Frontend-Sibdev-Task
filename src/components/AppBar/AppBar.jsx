@@ -5,6 +5,7 @@ import AppBarLayout from "./AppBarLayout";
 const onExit = (history) => () => {
   localStorage.clear();
   history.push("/auth");
+  window.location.reload();
 };
 
 const AppBar = () => {

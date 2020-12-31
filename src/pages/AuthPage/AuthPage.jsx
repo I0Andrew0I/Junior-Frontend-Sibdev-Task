@@ -16,6 +16,7 @@ const onAuth = (history, login, password) => () => {
   const token = jwt.sign({ login }, "privateKey");
   localStorage.setItem("token", token);
   history.push("/search");
+  window.location.reload();
 };
 
 const AuthPage = () => {
