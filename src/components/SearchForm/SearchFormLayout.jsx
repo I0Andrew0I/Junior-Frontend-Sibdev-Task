@@ -4,13 +4,23 @@ import Search from "antd/lib/input/Search";
 import { HeartTwoTone, HeartOutlined } from "@ant-design/icons";
 import "./SearchForm.scss";
 
-const suffix = (position, onFavorite) => {
+const suffix = ({ position, onFavorite, isFavorite }) => {
   if (position === "top")
     return (
-      <HeartTwoTone
-        className={`search-form-${position}__field__icon`}
-        onClick={onFavorite}
-      />
+      <>
+        {isFavorite && (
+          <HeartTwoTone
+            className={`search-form-${position}__field__icon`}
+            onClick={onFavorite}
+          />
+        )}
+        {!isFavorite && (
+          <HeartOutlined
+            className={`search-form-${position}__field__icon`}
+            onClick={onFavorite}
+          />
+        )}
+      </>
     );
 };
 
@@ -20,6 +30,7 @@ const SearchFormLayout = ({
   setSearchQuery,
   onSearch,
   onFavorite,
+  isFavorite,
 }) => {
   return (
     <div className={`search-form search-form-${position}`}>
@@ -29,7 +40,7 @@ const SearchFormLayout = ({
           placeholder="Что хотите посмотреть?"
           enterButton="Найти"
           size="large"
-          suffix={suffix(position, onFavorite)}
+          suffix={suffix({ position, onFavorite, isFavorite })}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onSearch={onSearch}
@@ -45,6 +56,11 @@ SearchFormLayout.propTypes = {
   setSearchQuery: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   onFavorite: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+};
+
+SearchFormLayout.defaultProps = {
+  isFavorite: false,
 };
 
 export default SearchFormLayout;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FavoriteModalLayout from "./FavoriteModalLayout";
+import { sortByList } from "../../constants/sortByList";
 
 const FavoriteModal = ({
   favorites,
@@ -11,10 +12,6 @@ const FavoriteModal = ({
   addFavorite,
 }) => {
   const favorite = favorites.find((f) => f.id === id) || {};
-  const sortByList = [
-    { value: "none", label: "Без сортировки" },
-    { value: "any", label: "По чему-нибудь" },
-  ];
   return (
     <FavoriteModalLayout
       favorite={favorite}
@@ -39,14 +36,15 @@ FavoriteModal.propTypes = {
   id: PropTypes.number.isRequired,
   setId: PropTypes.func.isRequired,
   searchQueryAdd: PropTypes.string.isRequired,
+  onAdd: PropTypes.func.isRequired,
   saveFavorite: PropTypes.func.isRequired,
   addFavorite: PropTypes.func.isRequired,
 };
 
 FavoriteModal.defaultProps = {
   favorites: [],
+  searchQueryAdd: "",
+  onAdd: () => {},
 };
-
-//TODO: favorites из хранилища
 
 export default FavoriteModal;

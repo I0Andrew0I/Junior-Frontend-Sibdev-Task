@@ -44,7 +44,6 @@ const FavoriteModalLayout = ({
 
   useEffect(() => {
     if (!searchQueryAdd) {
-      console.log("123456");
       setSearchQuery(favorite.searchQuery);
       setName(favorite.name);
       setMaxResultsCount(favorite.maxResultsCount);
@@ -86,7 +85,7 @@ const FavoriteModalLayout = ({
       <div className="favorite-modal__input">
         <div className="favorite-modal__input__label">Сортировать по</div>
         <Select
-          defaultValue={"none"}
+          defaultValue={""}
           className="favorite-modal__input__select"
           onChange={(value) => setSortBy(value)}
         >

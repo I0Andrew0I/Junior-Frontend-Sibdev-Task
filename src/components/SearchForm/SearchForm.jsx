@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SearchFormLayout from "./SearchFormLayout";
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,7 @@ import FavoriteModal from "../FavoriteModal/FavoriteModal";
 import { message } from "antd";
 import { search } from "../../helpers/helpers";
 
-const onFavorite = (searchQuery, setId) => {
+const onFavorite = ({ searchQuery, setId }) => {
   if (searchQuery !== "") {
     setId(-1);
   } else {
@@ -14,26 +14,35 @@ const onFavorite = (searchQuery, setId) => {
   }
 };
 
-const SearcForm = ({ position }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearcForm = ({ defaultSearchQuery }) => {
+  const [searchQuery, setSearchQuery] = useState(defaultSearchQuery || "");
+  const [isFavorite, setIsFavorite] = useState(false);
   const history = useHistory();
   const [id, setId] = useState(null);
+  useEffect(() => setSearchQuery(defaultSearchQuery), [defaultSearchQuery]);
   return (
     <>
       <SearchFormLayout
-        position={position}
+        position={searchQuery ? "top" : "center"}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onSearch={search(history)}
-        onFavorite={() => onFavorite(searchQuery, setId)}
+        onFavorite={() => onFavorite({ searchQuery, setId })}
+        isFavorite={isFavorite}
       />
-      <FavoriteModal id={id} setId={setId} isAdd searchQueryAdd={searchQuery} />
+      <FavoriteModal
+        id={id}
+        setId={setId}
+        isAdd
+        searchQueryAdd={searchQuery}
+        onAdd={() => setIsFavorite(true)}
+      />
     </>
   );
 };
 
 SearchFormLayout.propTypes = {
-  position: PropTypes.oneOf(["top", "center"]).isRequired,
+  defaultSearchQuery: PropTypes.string.isRequired,
 };
 
 export default SearcForm;

@@ -5,45 +5,45 @@ import GridItem from "../GridItem/GridItem";
 import ListItem from "../ListItem/ListItem";
 import "./SearchResult.scss";
 
-const SearchResultLayout = ({ resultItems }) => {
-  const [filterType, setFilterType] = useState("block");
-  const handleFilterTypeChange = (value) => {
-    setFilterType(value);
+const SearchResultLayout = ({ resultItems, searchQuery, totalResults }) => {
+  const [viewType, setViewType] = useState("list");
+  const handleViewTypeChange = (value) => {
+    setViewType(value);
   };
   return (
     <div className="search-result">
       <div className="search-result__filter-panel">
         <div className="search-result__filter-panel__message">
           <div className="search-result__filter-panel__message__text">
-            Видео по запросу "чем кормить кота чем кормить кота"
+            {`Видео по запросу "${decodeURI(searchQuery)}"`}
           </div>
           <div className="search-result__filter-panel__message__total-results">
-            7230
+            {totalResults}
           </div>
         </div>
         <div className="search-result__filter-panel__view-switcher">
           <BarsOutlined
             className={
-              filterType === "list"
+              viewType === "list"
                 ? "search-result__filter-panel__view-switcher__item__selected"
                 : "search-result__filter-panel__view-switcher__item"
             }
-            onClick={() => handleFilterTypeChange("list")}
+            onClick={() => handleViewTypeChange("list")}
           />
           <AppstoreOutlined
             className={
-              filterType === "block"
+              viewType === "block"
                 ? "search-result__filter-panel__view-switcher__item__selected"
                 : "search-result__filter-panel__view-switcher__item"
             }
-            onClick={() => handleFilterTypeChange("block")}
+            onClick={() => handleViewTypeChange("block")}
           />
         </div>
       </div>
       <div className="search-result__results">
         {resultItems.map(
           ({ image, name, channelName, viewCount, videoId }) =>
-            (filterType === "block" && (
+            (viewType === "block" && (
               <GridItem
                 image={image}
                 name={name}
@@ -52,7 +52,7 @@ const SearchResultLayout = ({ resultItems }) => {
                 videoId={videoId}
               />
             )) ||
-            (filterType === "list" && (
+            (viewType === "list" && (
               <ListItem
                 image={image}
                 name={name}
@@ -75,6 +75,8 @@ SearchResultLayout.propTypes = {
     viewCount: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
   }).isRequired,
+  searchString: PropTypes.string.isRequired,
+  totalResults: PropTypes.number.isRequired,
 };
 
 export default SearchResultLayout;

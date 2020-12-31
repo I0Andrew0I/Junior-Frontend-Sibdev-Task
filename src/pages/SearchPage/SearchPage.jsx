@@ -4,11 +4,17 @@ import SearcForm from "../../components/SearchForm/SearchForm";
 import SearchResult from "../../components/SearchResult/SearchResult";
 
 const SearchPage = () => {
-  const { search_query } = useParams();
+  const { searchQuery, maxResults, sortBy } = useParams();
   return (
     <>
-      <SearcForm position={search_query ? "top" : "center"} />
-      {search_query && <SearchResult />}
+      <SearcForm defaultSearchQuery={searchQuery} />
+      {searchQuery && (
+        <SearchResult
+          searchQuery={searchQuery}
+          maxResults={maxResults}
+          sortBy={sortBy}
+        />
+      )}
     </>
   );
 };

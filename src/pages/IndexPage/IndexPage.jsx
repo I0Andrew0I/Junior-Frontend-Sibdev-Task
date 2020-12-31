@@ -14,7 +14,11 @@ const IndexPage = () => {
       <Content className="index-page">
         <div className="index-page__data">
           <Switch>
-            <Route path="/search/:search_query" component={SearchPage} />
+            <Route
+              path="/search/:searchQuery/:maxResults/:sortBy"
+              component={SearchPage}
+            />
+            <Route path="/search/:searchQuery/" component={SearchPage} />
             <Route path="/search/" component={SearchPage} />
             <Route path="/favorites" component={FavoritesPage} />
             <Route path="*" component={NotFoundPage} />
