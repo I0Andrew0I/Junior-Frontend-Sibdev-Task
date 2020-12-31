@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import AppBarLayout from "./AppBarLayout";
 
 const onExit = (history) => () => {
-  Storage.clear();
+  localStorage.clear();
   history.push("/auth");
 };
 

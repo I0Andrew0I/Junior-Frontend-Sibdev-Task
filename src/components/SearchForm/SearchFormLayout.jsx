@@ -31,7 +31,6 @@ const SearchFormLayout = ({
   onFavorite,
   isFavorite,
 }) => {
-  console.log("isFavorite", isFavorite);
   return (
     <div className={`search-form search-form-${position}`}>
       <div className={`search-form-${position}__label`}>Поиск видео</div>
