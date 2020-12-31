@@ -5,7 +5,7 @@ import "./GridItem.scss";
 const GridItemLayout = ({ image, name, channelName, viewCount, onClick }) => {
   return (
     <div className="grid-item" onClick={onClick}>
-      <img src={image} className="grid-item__image" />
+      <img alt="Logo" src={image} className="grid-item__image" />
       <div className="grid-item__name">{name}</div>
       <div className="grid-item__info">{channelName}</div>
       <div className="grid-item__info">{viewCount}</div>

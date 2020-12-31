@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import AuthPageLayout from "./AuthPageLayout";
 
 const onAuth = (history) => () => {
-  history.push("/search");
   //TODO: Авторизация
+  history.push("/search");
 };
 
 const AuthPage = () => {

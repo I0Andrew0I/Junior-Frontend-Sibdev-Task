@@ -1,8 +1,8 @@
-import youtubeApi from "../../api/youtubeApi";
+import { youtubeApi, apiKey } from "../../api/youtubeApi";
 
-export const SET_SEARCH_SUCCESS = "SET_PLACES_SUCCESS";
-export const SET_SEARCH_ERROR = "SET_PLACES_ERROR";
-export const SET_SEARCH_ISLOADING = "SET_FAVORITES_ISLOADING";
+export const SET_SEARCH_SUCCESS = "SET_SEARCH_SUCCESS";
+export const SET_SEARCH_ERROR = "SET_SEARCH_ERROR";
+export const SET_SEARCH_ISLOADING = "SET_SEARCH_ISLOADING";
 
 export const setSearchSuccess = (placesList) => ({
   type: SET_SEARCH_SUCCESS,
@@ -46,15 +46,12 @@ const transformSearchResults = ({
 export const loadSearchResult = ({ searchQuery, maxResults, sortBy }) => async (
   dispatch
 ) => {
-  console.log(maxResults);
   dispatch(setIsLoading(true));
   try {
     const { data, status } = await youtubeApi.get(
       `search?part=snippet&q=${searchQuery}&type=video&maxResults=${
         maxResults || 12
-      }${
-        sortBy ? `&order=${sortBy}` : ""
-      }&key=AIzaSyCWAPD5c4mAtit0Hjds-LYZNjYWw7w3EOc`
+      }${sortBy ? `&order=${sortBy}` : ""}&key=${apiKey}`
     );
     if (status === 200) {
       const searchResult = transformSearchResults({

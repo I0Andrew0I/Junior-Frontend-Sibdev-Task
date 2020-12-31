@@ -5,23 +5,22 @@ import { HeartTwoTone, HeartOutlined } from "@ant-design/icons";
 import "./SearchForm.scss";
 
 const suffix = ({ position, onFavorite, isFavorite }) => {
-  if (position === "top")
-    return (
-      <>
-        {isFavorite && (
-          <HeartTwoTone
-            className={`search-form-${position}__field__icon`}
-            onClick={onFavorite}
-          />
-        )}
-        {!isFavorite && (
-          <HeartOutlined
-            className={`search-form-${position}__field__icon`}
-            onClick={onFavorite}
-          />
-        )}
-      </>
-    );
+  return (
+    <>
+      {position === "top" && isFavorite && (
+        <HeartTwoTone
+          className={`search-form-${position}__field__icon`}
+          onClick={onFavorite}
+        />
+      )}
+      {position === "top" && !isFavorite && (
+        <HeartOutlined
+          className={`search-form-${position}__field__icon`}
+          onClick={onFavorite}
+        />
+      )}
+    </>
+  );
 };
 
 const SearchFormLayout = ({
@@ -32,6 +31,7 @@ const SearchFormLayout = ({
   onFavorite,
   isFavorite,
 }) => {
+  console.log("isFavorite", isFavorite);
   return (
     <div className={`search-form search-form-${position}`}>
       <div className={`search-form-${position}__label`}>Поиск видео</div>
@@ -42,7 +42,7 @@ const SearchFormLayout = ({
           size="large"
           suffix={suffix({ position, onFavorite, isFavorite })}
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value, "", "")}
           onSearch={onSearch}
         />
       </div>

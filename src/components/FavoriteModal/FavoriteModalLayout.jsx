@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Slider, InputNumber, Row, Input, Modal, Button, Select } from "antd";
 import { Option } from "antd/lib/mentions";
@@ -6,55 +6,44 @@ import { message } from "antd";
 import "./FavoriteModal.scss";
 
 const FavoriteModalLayout = ({
-  favorite,
   id,
   setId,
+  searchQuery,
+  setSearchQuery,
+  name,
+  setName,
+  maxResultsCount,
+  setMaxResultsCount,
+  sortBy,
+  setSortBy,
+  isAdd,
+  onChange,
+  onAdd,
   sortByList,
-  searchQueryAdd,
-  saveFavorite,
-  addFavorite,
 }) => {
-  const [searchQuery, setSearchQuery] = useState(
-    favorite.searchQuery || searchQueryAdd
-  );
-  const [name, setName] = useState(favorite.name || "");
-  const [maxResultsCount, setMaxResultsCount] = useState(
-    favorite.maxResultsCount || "20"
-  );
-  const [sortBy, setSortBy] = useState(favorite.sortBy || "none");
-
   const handleOk = () => {
     if (name === "") {
       message.error("Введите название");
       return;
     }
-    if (searchQueryAdd) {
-      addFavorite(searchQueryAdd, name, maxResultsCount, sortBy);
+    if (isAdd) {
+      onAdd();
     } else {
-      saveFavorite(id, searchQuery, name, maxResultsCount, sortBy);
+      onChange();
     }
-    setId(null);
+    setId(-1);
   };
   const handleCancel = () => {
-    setId(null);
+    setId(-1);
   };
   const onMaxResultsCountChange = (value) => {
     setMaxResultsCount(value);
   };
-
-  useEffect(() => {
-    if (!searchQueryAdd) {
-      setSearchQuery(favorite.searchQuery);
-      setName(favorite.name);
-      setMaxResultsCount(favorite.maxResultsCount);
-      setSortBy(favorite.sortBy);
-    }
-  }, [id]);
-
+  const visible = Number(id) > -1;
   return (
     <Modal
       style={{ borderRadius: "50px" }}
-      visible={id}
+      visible={visible}
       onCancel={handleCancel}
       footer={false}
       closable={false}
@@ -66,9 +55,9 @@ const FavoriteModalLayout = ({
         <Input
           className="favorite-modal__input__field"
           placeholder="Введите запрос"
-          value={searchQueryAdd || searchQuery}
+          value={searchQuery}
           onChange={({ target }) => setSearchQuery(target.value)}
-          disabled={Boolean(searchQueryAdd)}
+          disabled={isAdd}
         />
       </div>
       <div className="favorite-modal__input">
@@ -86,6 +75,7 @@ const FavoriteModalLayout = ({
         <div className="favorite-modal__input__label">Сортировать по</div>
         <Select
           defaultValue={""}
+          value={sortBy}
           className="favorite-modal__input__select"
           onChange={(value) => setSortBy(value)}
         >
@@ -120,14 +110,14 @@ const FavoriteModalLayout = ({
           className="favorite-modal__buttons__button"
           onClick={handleCancel}
         >
-          {searchQueryAdd ? "Не сохранять" : "Не изменять"}
+          {isAdd ? "Не сохранять" : "Не изменять"}
         </Button>
         <Button
           type="primary"
           className="favorite-modal__buttons__button"
           onClick={handleOk}
         >
-          {searchQueryAdd ? "Сохранить" : "Изменить"}
+          {isAdd ? "Сохранить" : "Изменить"}
         </Button>
       </div>
     </Modal>
@@ -135,25 +125,23 @@ const FavoriteModalLayout = ({
 };
 
 FavoriteModalLayout.propTypes = {
-  favorite: PropTypes.shape({
-    searchQuery: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    sortBy: PropTypes.string.isRequired,
-    maxResultsCount: PropTypes.number.isRequired,
-  }),
   id: PropTypes.number.isRequired,
   setId: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired,
+  maxResultsCount: PropTypes.string.isRequired,
+  setMaxResultsCount: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  setSortBy: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  isAdd: PropTypes.bool.isRequired,
   sortByList: PropTypes.arrayOf({
-    value: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
   }),
-  searchQueryAdd: PropTypes.string,
-  saveFavorite: PropTypes.func.isRequired,
-  addFavorite: PropTypes.func.isRequired,
-};
-
-FavoriteModalLayout.defaultProps = {
-  favorite: {},
 };
 
 export default FavoriteModalLayout;

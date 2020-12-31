@@ -3,3 +3,5 @@ export const initialSearch = {
   error: "",
   searchResult: null,
 };
+
+export const initialFavorites = [];

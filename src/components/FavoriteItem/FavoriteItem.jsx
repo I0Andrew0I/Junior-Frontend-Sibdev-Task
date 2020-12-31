@@ -1,17 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
-import { search } from "../../helpers/helpers";
 import "./FavoriteItem.scss";
 
-const FavoriteItem = ({ name, searchQuery, onChange, onDelete }) => {
-  const history = useHistory();
+const FavoriteItem = ({ name, onClick, onChange, onDelete }) => {
   return (
     <div className="favorite-item">
-      <div
-        className="favorite-item__label"
-        onClick={() => search(history)(searchQuery)}
-      >
+      <div className="favorite-item__label" onClick={onClick}>
         {name}
       </div>
       <div className="favorite-item__buttons">
@@ -23,13 +17,20 @@ const FavoriteItem = ({ name, searchQuery, onChange, onDelete }) => {
         </div>
         <div
           className="favorite-item__buttons__button-delete"
-          onClick={() => onDelete()}
+          onClick={onDelete}
         >
           Удалить
         </div>
       </div>
     </div>
   );
+};
+
+FavoriteItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default FavoriteItem;

@@ -1,0 +1,22 @@
+.favorite-add-message {
+  font-style: normal;
+  font-weight: normal;
+  width: 220px;
+  height: 117px;
+  // padding: 15px;
+  font-family: PT Sans;
+  border-radius: 5px !important;
+  &__label {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+  }
+  &__button {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1390e5 !important;
+    cursor: pointer !important;
+    text-align: left;
+  }
+}

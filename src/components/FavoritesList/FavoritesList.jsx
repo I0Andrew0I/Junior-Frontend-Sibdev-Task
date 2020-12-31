@@ -2,34 +2,35 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FavoriteItem from "../FavoriteItem/FavoriteItem";
 import FavoriteModal from "../FavoriteModal/FavoriteModal";
-import { favorites } from "../../data/favorites.mock";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteFavorite } from "../../store/actions/favorites";
+import { search } from "../../helpers/helpers";
+import { useHistory } from "react-router-dom";
 
-const FavoritesList = ({ onFavoriteChange, onFavoriteDelete }) => {
-  const [id, setId] = useState(null);
+const FavoritesList = () => {
+  const dispatch = useDispatch();
+  const [id, setId] = useState(-1);
+  const { favorites } = useSelector((favorites) => favorites);
+  const history = useHistory();
   return (
     <>
       {favorites.map((favorite) => (
         <FavoriteItem
           name={favorite.name}
-          searchQuery={favorite.searchQuery}
+          onClick={() =>
+            search(history)(
+              favorite.searchQuery,
+              favorite.maxResultsCount,
+              favorite.sortBy
+            )
+          }
           onChange={() => setId(favorite.id)}
+          onDelete={() => dispatch(deleteFavorite(favorite.id))}
         />
       ))}
       <FavoriteModal favorites={favorites} id={id} setId={setId} />
     </>
   );
-};
-
-FavoritesList.propTypes = {
-  // favorites: PropTypes.arrayOf({
-  //   searchQuery: PropTypes.string.isRequired,
-  //   name: PropTypes.string.isRequired,
-  //   id: PropTypes.number.isRequired,
-  //   sortBy: PropTypes.string.isRequired,
-  //   maxResultsCount: PropTypes.number.isRequired,
-  // }).isRequired,
-  // onFavoriteChange: PropTypes.func.isRequired,
-  // onFavoriteDelete: PropTypes.func.isRequired,
 };
 
 export default FavoritesList;

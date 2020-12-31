@@ -6,9 +6,9 @@ import FavoriteModal from "../FavoriteModal/FavoriteModal";
 import { message } from "antd";
 import { search } from "../../helpers/helpers";
 
-const onFavorite = ({ searchQuery, setId }) => {
+const onFavoriteAdd = ({ searchQuery, setId }) => {
   if (searchQuery !== "") {
-    setId(-1);
+    setId(0);
   } else {
     message.warn("Введите запрос");
   }
@@ -18,16 +18,16 @@ const SearcForm = ({ defaultSearchQuery }) => {
   const [searchQuery, setSearchQuery] = useState(defaultSearchQuery || "");
   const [isFavorite, setIsFavorite] = useState(false);
   const history = useHistory();
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(-1);
   useEffect(() => setSearchQuery(defaultSearchQuery), [defaultSearchQuery]);
   return (
     <>
       <SearchFormLayout
-        position={searchQuery ? "top" : "center"}
+        position={defaultSearchQuery ? "top" : "center"}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        onSearch={search(history)}
-        onFavorite={() => onFavorite({ searchQuery, setId })}
+        onSearch={() => search(history)(searchQuery)}
+        onFavorite={() => onFavoriteAdd({ searchQuery, setId })}
         isFavorite={isFavorite}
       />
       <FavoriteModal
@@ -35,7 +35,7 @@ const SearcForm = ({ defaultSearchQuery }) => {
         setId={setId}
         isAdd
         searchQueryAdd={searchQuery}
-        onAdd={() => setIsFavorite(true)}
+        callbackOnAdd={() => setIsFavorite(true)}
       />
     </>
   );

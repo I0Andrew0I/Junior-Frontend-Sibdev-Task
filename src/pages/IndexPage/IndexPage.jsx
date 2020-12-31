@@ -19,8 +19,8 @@ const IndexPage = () => {
               component={SearchPage}
             />
             <Route path="/search/:searchQuery/" component={SearchPage} />
-            <Route path="/search/" component={SearchPage} />
             <Route path="/favorites" component={FavoritesPage} />
+            <Route path="/" exact component={SearchPage} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </div>
