@@ -80,7 +80,9 @@ const FavoriteModalLayout = ({
           onChange={(value) => setSortBy(value)}
         >
           {sortByList.map((item) => (
-            <Option value={item.value}>{item.label}</Option>
+            <Option key={item.value} value={item.value}>
+              {item.label}
+            </Option>
           ))}
         </Select>
       </div>
@@ -127,21 +129,28 @@ const FavoriteModalLayout = ({
 FavoriteModalLayout.propTypes = {
   id: PropTypes.number.isRequired,
   setId: PropTypes.func.isRequired,
-  searchQuery: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string,
   setSearchQuery: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   setName: PropTypes.func.isRequired,
   maxResultsCount: PropTypes.string.isRequired,
   setMaxResultsCount: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
+  sortBy: PropTypes.string,
   setSortBy: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onAdd: PropTypes.func.isRequired,
   isAdd: PropTypes.bool.isRequired,
-  sortByList: PropTypes.arrayOf({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  }),
+  sortByList: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+FavoriteModalLayout.defaultValue = {
+  searchQuery: "",
+  sortBy: "",
 };
 
 export default FavoriteModalLayout;

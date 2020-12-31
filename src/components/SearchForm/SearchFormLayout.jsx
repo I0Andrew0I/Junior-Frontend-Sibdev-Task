@@ -55,7 +55,7 @@ SearchFormLayout.propTypes = {
   setSearchQuery: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   onFavorite: PropTypes.func.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool,
 };
 
 SearchFormLayout.defaultProps = {

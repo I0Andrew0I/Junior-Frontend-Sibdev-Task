@@ -14,10 +14,10 @@ const onFavoriteAdd = ({ searchQuery, setId }) => {
   }
 };
 
-const SearcForm = ({ defaultSearchQuery }) => {
-  const [searchQuery, setSearchQuery] = useState(defaultSearchQuery || "");
-  const [isFavorite, setIsFavorite] = useState(false);
+const SearchForm = ({ defaultSearchQuery }) => {
   const history = useHistory();
+  const [searchQuery, setSearchQuery] = useState(defaultSearchQuery);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [id, setId] = useState(-1);
   useEffect(() => setSearchQuery(defaultSearchQuery), [defaultSearchQuery]);
   return (
@@ -41,8 +41,12 @@ const SearcForm = ({ defaultSearchQuery }) => {
   );
 };
 
-SearchFormLayout.propTypes = {
-  defaultSearchQuery: PropTypes.string.isRequired,
+SearchForm.propTypes = {
+  defaultSearchQuery: PropTypes.string,
 };
 
-export default SearcForm;
+SearchForm.defaultProps = {
+  defaultSearchQuery: "",
+};
+
+export default SearchForm;

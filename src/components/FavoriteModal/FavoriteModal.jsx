@@ -13,7 +13,7 @@ const FavoriteModal = ({ id, setId, searchQueryAdd, isAdd, callbackOnAdd }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const favorites = useSelector(({ favorites }) => favorites);
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
   const [name, setName] = useState("");
   const [maxResultsCount, setMaxResultsCount] = useState("25");
   const [sortBy, setSortBy] = useState("");
@@ -69,7 +69,7 @@ FavoriteModal.propTypes = {
   setId: PropTypes.func.isRequired,
   searchQueryAdd: PropTypes.string.isRequired,
   isAdd: PropTypes.bool.isRequired,
-  callbackOnAdd: PropTypes.func.isRequired,
+  callbackOnAdd: PropTypes.func,
 };
 
 FavoriteModal.defaultProps = {
