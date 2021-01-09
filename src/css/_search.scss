@@ -1,0 +1,57 @@
+@import "./_mixins.scss";
+
+.search {
+  background: #ffffff;
+  grid-area: search;
+  position: sticky;
+  z-index: 1;
+  top: -1px;
+  display: flex;
+  align-items: center;
+  &__input {
+    flex-grow: 1;
+    margin-left: 60px;
+    margin-right: 60px;
+    height: 52px;
+    border: 1px solid rgba(51, 51, 51, 0.2);
+    box-sizing: border-box;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    @include is-tablet {
+      margin-left: 27px;
+      margin-right: 27px;
+    }
+    @include is-mobile {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    &__icon {
+      margin-left: 16px;
+      @include is-mobile {
+        display: none;
+      }
+    }
+    & input {
+      font-family: "Open Sans", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 28px;
+      border: none;
+      flex-grow: 1;
+      background: transparent;
+      margin-left: 8px;
+      margin-right: 8px;
+      @include is-mobile {
+        margin-left: 8px;
+        margin-right: 8px;
+        font-size: 14px;
+        line-height: 28px;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

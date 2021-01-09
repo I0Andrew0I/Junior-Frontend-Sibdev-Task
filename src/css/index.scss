@@ -1,0 +1,29 @@
+@import "./_mixins.scss";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar search"
+    "sidebar content";
+  grid-template-rows: 70px 132px 1fr;
+  grid-template-columns: 240px 1fr;
+  @include is-tablet {
+    grid-template-rows: 75px 106px 1fr;
+    grid-template-columns: 104px 1fr;
+  }
+  @include is-mobile {
+    grid-template-rows: 75px 106px 1fr;
+    grid-template-columns: 12px 1fr;
+  }
+  @import "./_sidebar.scss";
+  @import "./_header.scss";
+  @import "./_search.scss";
+  @import "./_content.scss";
+}

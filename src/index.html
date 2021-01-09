@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="./resources/beco.svg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>BECO</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div id="sidebar-content" class="sidebar__content">
+        <div class="sidebar__content__button" onClick="onSidebarButtonClick();">
+          <img src="./resources/union.svg" />
+          <img
+            class="sidebar__content__button__burger-menu"
+            src="./resources/burger_menu.svg"
+          />
+          <img
+            class="sidebar__content__button__menu-exit"
+            src="./resources/menu_exit.svg"
+          />
+        </div>
+        <div class="sidebar__content__title">
+          <img
+            src="./resources/beco.svg"
+            class="sidebar__content__title__icon"
+          />
+          <div class="sidebar__content__title__label">BECO</div>
+        </div>
+        <div class="sidebar__content__item">
+          <div class="sidebar__content__item__icon">
+            <img
+              src="./resources/catalog.svg"
+              class="sidebar__content__item__icon__default"
+            />
+            <img
+              src="./resources/catalog_blue.svg"
+              class="sidebar__content__item__icon__colored"
+            />
+          </div>
+          <div class="sidebar__content__item__label">Каталог</div>
+        </div>
+        <div class="sidebar__content__item">
+          <div class="sidebar__content__item__icon">
+            <img
+              src="./resources/health.svg"
+              class="sidebar__content__item__icon__default"
+            />
+            <img
+              src="./resources/health_blue.svg"
+              class="sidebar__content__item__icon__colored"
+            />
+          </div>
+          <div class="sidebar__content__item__label">Здоровье</div>
+        </div>
+        <div class="sidebar__content__item">
+          <div class="sidebar__content__item__icon">
+            <img
+              src="./resources/beauty.svg"
+              class="sidebar__content__item__icon__default"
+            />
+            <img
+              src="./resources/beauty_blue.svg"
+              class="sidebar__content__item__icon__colored"
+            />
+          </div>
+          <div class="sidebar__content__item__label">Красота</div>
+        </div>
+        <div class="sidebar__content__item">
+          <div class="sidebar__content__item__icon">
+            <img
+              src="./resources/enjoy.svg"
+              class="sidebar__content__item__icon__default"
+            />
+            <img
+              src="./resources/enjoy_blue.svg"
+              class="sidebar__content__item__icon__colored"
+            />
+          </div>
+          <div class="sidebar__content__item__label">Развлечения</div>
+        </div>
+        <div class="sidebar__content__item sidebar__content__item__selected">
+          <div class="sidebar__content__item__icon">
+            <img
+              src="./resources/car.svg"
+              class="sidebar__content__item__icon__default"
+            />
+            <img
+              src="./resources/car_blue.svg"
+              class="sidebar__content__item__icon__colored"
+            />
+          </div>
+          <div
+            class="sidebar__content__item__label sidebar__content__item__label__selected"
+          >
+            Авто
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header"><div class="header__title">Развлечения</div></div>
+    <div class="search">
+      <div class="search__input" id="search-input">
+        <img
+          id="search-icon"
+          class="search__input__icon"
+          src="./resources/search.svg"
+        />
+        <input placeholder="Какой магазин вам нужен?" />
+      </div>
+    </div>
+    <div class="content">
+      <div class="content__grid">
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+        <div class="content__grid__item">
+          <div class="content__grid__item__border"></div>
+          <div class="content__grid__item__left">
+            <div class="content__grid__item__left__top">
+              <div class="content__grid__item__left__top__name">
+                Кино и немцы
+              </div>
+              <div class="content__grid__item__left__top__description">
+                Бесплатный бокал пива
+              </div>
+            </div>
+            <div class="content__grid__item__left__bottom">
+              <div class="content__grid__item__left__bottom__num">Варвар</div>
+              <div class="content__grid__item__left__bottom__label">
+                Промокод
+              </div>
+            </div>
+          </div>
+          <img
+            src="./resources/image1.png"
+            class="content__grid__item__image"
+          />
+        </div>
+      </div>
+      <!-- <embed type="image/svg+xml" width="500px" src="./resources/item.svg" /> -->
+    </div>
+    <script src="./js/scripts.js"></script>
+  </body>
+</html>

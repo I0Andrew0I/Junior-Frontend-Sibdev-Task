@@ -1,0 +1,176 @@
+@import "./_mixins.scss";
+
+.content {
+  background: #fafafa;
+  grid-area: content;
+  padding-top: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 40px;
+  @include is-tablet {
+    padding-top: 27px;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+  @include is-mobile {
+    padding-top: 27px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+    width: calc(100% + 20px);
+    justify-content: flex-start;
+    filter: drop-shadow(0px 1px 3px rgba(50, 50, 50, 0.3));
+    &__item {
+      cursor: pointer;
+      display: flex;
+      border-radius: 10px;
+      justify-content: space-around;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      position: relative;
+      min-width: calc(25% - 20px);
+      clip-path: polygon(
+        2% 50%,
+        0 46%,
+        0 0,
+        100% 0,
+        100% 46%,
+        98% 50%,
+        100% 54%,
+        100% 100%,
+        0 100%,
+        0 54%
+      );
+      background-color: #ffffff;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: #de202d;
+      }
+      &__border {
+        position: absolute;
+        background-color: #ffffff;
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        border-radius: 9px;
+        left: 1px;
+        top: 1px;
+        z-index: 1;
+        clip-path: polygon(
+          2% 50%,
+          0 46%,
+          0 0,
+          100% 0,
+          100% 46%,
+          98% 50%,
+          100% 54%,
+          100% 100%,
+          0 100%,
+          0 54%
+        );
+      }
+      @include is-desktop {
+        min-width: calc(33.33% - 20px);
+      }
+      @include is-tablet {
+        min-width: calc(50% - 20px);
+      }
+      @include is-mobile {
+        min-width: calc(100% - 20px);
+      }
+      &::before {
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        padding-bottom: calc(0.46 * 100%);
+      }
+      &__left {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        &__top {
+          margin-left: 20px;
+          &__name {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 16px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+            @include is-tablet {
+              font-size: 14px;
+            }
+            @include is-mobile {
+              font-size: 12px;
+            }
+          }
+          &__description {
+            margin-top: 4px;
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 16px;
+            color: #000000;
+            opacity: 0.5;
+            @include is-tablet {
+              font-size: 14px;
+            }
+            @include is-mobile {
+              font-size: 12px;
+            }
+          }
+        }
+        &__bottom {
+          margin-left: 20px;
+          &__num {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 28px;
+            color: #df212d;
+            text-transform: uppercase;
+            @include is-mobile {
+              line-height: 28px;
+            }
+          }
+          &__label {
+            margin-top: 6px;
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 16px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            @include is-mobile {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      &__image {
+        z-index: 2;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+      }
+    }
+  }
+}
