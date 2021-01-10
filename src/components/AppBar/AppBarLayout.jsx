@@ -21,7 +21,7 @@ const AppBarLayout = ({ onExit, rootPath }) => {
           selectedKeys={[rootPath]}
           onClick={({ key }) => redirect(history)(key)}
         >
-          <img alt="" height={48} width={48} src={logo} />
+          <img key="" alt="" height={48} width={48} src={logo} />
           <Menu.Item key="search">Поиск</Menu.Item>
           <Menu.Item key="favorites">Избранное</Menu.Item>
         </Menu>

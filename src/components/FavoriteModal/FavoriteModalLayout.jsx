@@ -1,26 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Slider, InputNumber, Row, Input, Modal, Button, Select } from "antd";
-import { Option } from "antd/lib/mentions";
 import { message } from "antd";
 import "./FavoriteModal.scss";
+const { Option } = Select;
 
 const FavoriteModalLayout = ({
-  id,
-  setId,
-  searchQuery,
-  setSearchQuery,
-  name,
-  setName,
-  maxResultsCount,
-  setMaxResultsCount,
-  sortBy,
-  setSortBy,
+  fields,
   isAdd,
   onChange,
   onAdd,
   sortByList,
 }) => {
+  const { id, searchQuery, name, maxResultsCount, sortBy } = fields;
   const handleOk = () => {
     if (name === "") {
       message.error("Введите название");
@@ -31,15 +23,15 @@ const FavoriteModalLayout = ({
     } else {
       onChange();
     }
-    setId(-1);
+    id.setValue(-1);
   };
   const handleCancel = () => {
-    setId(-1);
+    id.setValue(-1);
   };
   const onMaxResultsCountChange = (value) => {
-    setMaxResultsCount(value);
+    maxResultsCount.setValue(value);
   };
-  const visible = Number(id) > -1;
+  const visible = Number(id.value) > -1;
   return (
     <Modal
       style={{ borderRadius: "50px" }}
@@ -55,8 +47,8 @@ const FavoriteModalLayout = ({
         <Input
           className="favorite-modal__input__field"
           placeholder="Введите запрос"
-          value={searchQuery}
-          onChange={({ target }) => setSearchQuery(target.value)}
+          value={searchQuery.value}
+          onChange={({ target }) => searchQuery.setValue(target.value)}
           disabled={isAdd}
         />
       </div>
@@ -67,17 +59,17 @@ const FavoriteModalLayout = ({
         <Input
           className="favorite-modal__input__field"
           placeholder="Укажите название"
-          value={name}
-          onChange={({ target }) => setName(target.value)}
+          value={name.value}
+          onChange={({ target }) => name.setValue(target.value)}
         />
       </div>
       <div className="favorite-modal__input">
         <div className="favorite-modal__input__label">Сортировать по</div>
         <Select
           defaultValue={""}
-          value={sortBy}
+          value={sortBy.value}
           className="favorite-modal__input__select"
-          onChange={(value) => setSortBy(value)}
+          onChange={(value) => sortBy.setValue(value)}
         >
           {sortByList.map((item) => (
             <Option key={item.value} value={item.value}>
@@ -96,13 +88,13 @@ const FavoriteModalLayout = ({
             min={1}
             max={50}
             onChange={onMaxResultsCountChange}
-            value={maxResultsCount}
+            value={maxResultsCount.value}
           />
           <InputNumber
             className="favorite-modal__input__field__field"
             min={1}
             max={50}
-            value={maxResultsCount}
+            value={maxResultsCount.value}
             onChange={onMaxResultsCountChange}
           />
         </Row>
@@ -127,16 +119,13 @@ const FavoriteModalLayout = ({
 };
 
 FavoriteModalLayout.propTypes = {
-  id: PropTypes.number.isRequired,
-  setId: PropTypes.func.isRequired,
-  searchQuery: PropTypes.string,
-  setSearchQuery: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  setName: PropTypes.func.isRequired,
-  maxResultsCount: PropTypes.string.isRequired,
-  setMaxResultsCount: PropTypes.func.isRequired,
-  sortBy: PropTypes.string,
-  setSortBy: PropTypes.func.isRequired,
+  fields: PropTypes.objectOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      setValue: PropTypes.func.isRequired,
+    }).isRequired
+  ),
   onChange: PropTypes.func.isRequired,
   onAdd: PropTypes.func.isRequired,
   isAdd: PropTypes.bool.isRequired,

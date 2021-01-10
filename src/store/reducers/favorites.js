@@ -7,7 +7,11 @@ const {
 } = require("../actions/favorites");
 
 const getMaxId = (favorites) => {
-  return favorites.reduce((acc, curr) => (curr.id > acc ? curr.id : acc), 0);
+  return favorites.reduce(
+    (accumulator, favorite) =>
+      favorite.id > accumulator ? favorite.id : accumulator,
+    0
+  );
 };
 
 const favorites = (favoritesState = initialFavorites, { type, payload }) => {

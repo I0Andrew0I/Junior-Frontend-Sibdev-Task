@@ -45,6 +45,7 @@ const SearchResultLayout = ({ resultItems, searchQuery, totalResults }) => {
           ({ image, name, channelName, viewCount, videoId }) =>
             (viewType === "block" && (
               <GridItem
+                key={videoId}
                 image={image}
                 name={name}
                 channelName={channelName}
@@ -54,6 +55,7 @@ const SearchResultLayout = ({ resultItems, searchQuery, totalResults }) => {
             )) ||
             (viewType === "list" && (
               <ListItem
+                key={videoId}
                 image={image}
                 name={name}
                 channelName={channelName}
@@ -68,14 +70,16 @@ const SearchResultLayout = ({ resultItems, searchQuery, totalResults }) => {
 };
 
 SearchResultLayout.propTypes = {
-  resultItems: PropTypes.arrayOf({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    channelName: PropTypes.string.isRequired,
-    viewCount: PropTypes.string.isRequired,
-    videoId: PropTypes.string.isRequired,
-  }).isRequired,
-  searchString: PropTypes.string.isRequired,
+  resultItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      channelName: PropTypes.string.isRequired,
+      viewCount: PropTypes.string.isRequired,
+      videoId: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  searchQuery: PropTypes.string.isRequired,
   totalResults: PropTypes.number.isRequired,
 };
 

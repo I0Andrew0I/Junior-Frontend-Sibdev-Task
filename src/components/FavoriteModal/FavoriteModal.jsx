@@ -38,24 +38,24 @@ const FavoriteModal = ({ id, setId, searchQueryAdd, isAdd, callbackOnAdd }) => {
       setSortBy("");
     } else {
       const favorite = favorites.find((value) => value.id === Number(id)) || {};
-      setSearchQuery(favorite.searchQuery);
-      setName(favorite.name);
-      setMaxResultsCount(favorite.maxResultsCount);
-      setSortBy(favorite.sortBy);
+      setSearchQuery(favorite.searchQuery || "");
+      setName(favorite.name || "");
+      setMaxResultsCount(favorite.maxResultsCount || 12);
+      setSortBy(favorite.sortBy || "");
     }
   }, [id]);
   return (
     <FavoriteModalLayout
-      id={id}
-      setId={setId}
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-      name={name}
-      setName={setName}
-      maxResultsCount={maxResultsCount}
-      setMaxResultsCount={setMaxResultsCount}
-      sortBy={sortBy}
-      setSortBy={setSortBy}
+      fields={{
+        id: { value: id, setValue: setId },
+        searchQuery: { value: searchQuery, setValue: setSearchQuery },
+        name: { value: name, setValue: setName },
+        maxResultsCount: {
+          value: maxResultsCount,
+          setValue: setMaxResultsCount,
+        },
+        sortBy: { value: sortBy, setValue: setSortBy },
+      }}
       onChange={onChange}
       onAdd={onAdd}
       isAdd={isAdd}
@@ -67,13 +67,14 @@ const FavoriteModal = ({ id, setId, searchQueryAdd, isAdd, callbackOnAdd }) => {
 FavoriteModal.propTypes = {
   id: PropTypes.number.isRequired,
   setId: PropTypes.func.isRequired,
-  searchQueryAdd: PropTypes.string.isRequired,
+  searchQueryAdd: PropTypes.string,
   isAdd: PropTypes.bool.isRequired,
   callbackOnAdd: PropTypes.func,
 };
 
 FavoriteModal.defaultProps = {
   callbackOnAdd: () => {},
+  isAdd: false,
 };
 
 export default FavoriteModal;

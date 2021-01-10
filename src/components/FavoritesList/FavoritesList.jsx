@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import FavoriteItem from "../FavoriteItem/FavoriteItem";
 import FavoriteModal from "../FavoriteModal/FavoriteModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +15,7 @@ const FavoritesList = () => {
     <>
       {favorites.map((favorite) => (
         <FavoriteItem
+          key={favorite.id}
           name={favorite.name}
           onClick={() =>
             search(history)(
