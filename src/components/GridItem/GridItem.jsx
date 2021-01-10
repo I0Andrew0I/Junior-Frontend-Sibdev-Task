@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import GridItemLayout from "./GridItemLayout";
+import { viewCountToString } from "../../helpers/helpers";
 
 const GridItem = ({ image, name, channelName, viewCount, videoId }) => {
   const onClick = () => {
@@ -11,7 +12,7 @@ const GridItem = ({ image, name, channelName, viewCount, videoId }) => {
       image={image}
       name={name}
       channelName={channelName}
-      viewCount={`${viewCount} тыс. просмотров`}
+      viewCount={viewCountToString(viewCount)}
       onClick={onClick}
     />
   );

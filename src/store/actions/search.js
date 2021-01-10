@@ -26,21 +26,44 @@ const transformSearchResults = ({
   searchQuery,
   maxResults,
 }) => {
-  if (kind && kind !== "youtube#searchListResponse")
-    throw new Error("Ошибка запроса");
   const data = {
     totalResults: pageInfo.totalResults,
     items: items.map(({ id, snippet }) => ({
       image: snippet.thumbnails.medium.url,
       name: snippet.title,
       channelName: snippet.channelTitle,
-      viewCount: "123", //TODO: fix
+      viewCount: "",
       videoId: id.videoId,
     })),
     searchQuery: searchQuery,
     countResults: maxResults,
   };
   return data;
+};
+
+const getVideoCountViews = async (item) => {
+  try {
+    const { data, status } = await youtubeApi.get(
+      `videos?part=statistics&id=${item.videoId}&key=${apiKey}`
+    );
+    if (status === 200) {
+      return {
+        ...item,
+        viewCount: data.items[0].statistics.viewCount,
+      };
+    }
+  } catch {
+    return { ...item, viewCount: "Ошибка загрузки" };
+  }
+};
+
+const getVideosCountViews = async (transformSearchResults) => {
+  const itemsWithCountView = await Promise.all(
+    transformSearchResults.items.map(
+      async (item) => await getVideoCountViews(item)
+    )
+  );
+  return { ...transformSearchResults, items: itemsWithCountView };
 };
 
 export const loadSearchResult = ({ searchQuery, maxResults, sortBy }) => async (
@@ -54,16 +77,25 @@ export const loadSearchResult = ({ searchQuery, maxResults, sortBy }) => async (
       }${sortBy ? `&order=${sortBy}` : ""}&key=${apiKey}`
     );
     if (status === 200) {
-      const searchResult = transformSearchResults({
+      const transformedSearchResults = transformSearchResults({
         ...data,
         searchQuery,
         maxResults: maxResults || 12,
         sortBy,
       });
+      const searchResult = await getVideosCountViews(transformedSearchResults);
       dispatch(setSearchSuccess(searchResult));
     }
-  } catch {
-    dispatch(setSearchError("Ошибка загрузки"));
+  } catch ({ response }) {
+    if (response.status === 403) {
+      dispatch(
+        setSearchError(
+          `Ошибка загрузки: ${response.data && response.data.error.message}`
+        )
+      );
+    } else {
+      dispatch(setSearchError(`Ошибка загрузки`));
+    }
   } finally {
     dispatch(setIsLoading(false));
   }
